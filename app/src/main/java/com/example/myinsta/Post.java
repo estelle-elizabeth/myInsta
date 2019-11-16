@@ -19,7 +19,6 @@ public class Post extends ParseObject {
     // Add a constructor that contains core properties
     public Post(String description) {
         super();
-        setDescription(description);
     }
 
     // Use getString and others to access fields
@@ -46,7 +45,7 @@ public class Post extends ParseObject {
     }
 
     // Associate each item with a user
-    public void setOwner(ParseUser user) {
+    public void setUser(ParseUser user) {
         put(KEY_USER, user);
     }
 }
