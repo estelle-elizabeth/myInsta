@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 postText.setText("");
+                image.setImageResource(0);
             }
         });
     }
