@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LogInActivity extends AppCompatActivity {
     EditText etUsername;
-    Button logInButton;
     EditText etPassword;
+    Button logInButton;
+    Button signUpButton;
     private static final String TAG = "LogInActivity";
 
 
@@ -29,6 +31,7 @@ public class LogInActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         logInButton = findViewById(R.id.logInButton);
+        signUpButton = findViewById(R.id.signUpButton);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +39,37 @@ public class LogInActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 logIn(username, password);
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                signUp(username, password);
+            }
+        });
+    }
+
+    private void signUp(String username, String password) {
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+
+        // Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    goMainActivity();
+                } else {
+                    Toast.makeText(LogInActivity.this, "Sorry, something went wrong.", Toast.LENGTH_SHORT).show();
+
+                    Log.e(TAG, "ParseException thrown.");
+                    e.printStackTrace();
+                    return;
+                }
             }
         });
     }
