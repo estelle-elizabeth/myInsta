@@ -1,29 +1,53 @@
 package com.example.myinsta;
 
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.parse.ParseUser;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Button logOutButton;
+    EditText postText;
+    Button photoButton;
+    ImageView image;
+    Button submitButton;
+    static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logOutButton = findViewById(R.id.logOutButton);
+        postText = findViewById(R.id.postText);
+        photoButton = findViewById(R.id.photoButton);
+        image = findViewById(R.id.postImage);
+        submitButton = findViewById(R.id.submitButton);
 
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-                finish(); // this will now be null
-            }
-        });
+        queryPost();
+    }
+
+    private void queryPost() {
+        // Specify which class to query
+                ParseQuery<Post> query = new ParseQuery<Post>(Post.class);
+                query.include(Post.KEY_USER);
+
+                query.findInBackground(new FindCallback<Post>() {
+                    @Override
+                    public void done(List<Post> posts, ParseException e) {
+                        if (e != null){
+                            Log.e(TAG, "Issue with post query");
+                            e.printStackTrace();
+                            return;
+                        }
+                    }
+                });
     }
 }
