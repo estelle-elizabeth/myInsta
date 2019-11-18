@@ -25,7 +25,6 @@
         </provider>
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".LogOutActivity" />
 
 
         <activity android:name=".LogInActivity">

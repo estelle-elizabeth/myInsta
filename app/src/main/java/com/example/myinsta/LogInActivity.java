@@ -26,30 +26,38 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null){
+            goMainActivity();
+        }
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        logInButton = findViewById(R.id.logInButton);
-        signUpButton = findViewById(R.id.signUpButton);
+        else{
+            setContentView(R.layout.activity_login);
 
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                logIn(username, password);
-            }
-        });
+            etUsername = findViewById(R.id.etUsername);
+            etPassword = findViewById(R.id.etPassword);
+            logInButton = findViewById(R.id.logInButton);
+            signUpButton = findViewById(R.id.signUpButton);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                signUp(username, password);
-            }
-        });
+            logInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String username = etUsername.getText().toString();
+                    String password = etPassword.getText().toString();
+                    logIn(username, password);
+                }
+            });
+
+            signUpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String username = etUsername.getText().toString();
+                    String password = etPassword.getText().toString();
+                    signUp(username, password);
+                }
+            });
+        }
+
     }
 
     private void signUp(String username, String password) {

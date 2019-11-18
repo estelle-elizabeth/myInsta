@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button photoButton;
     ImageView image;
     Button submitButton;
+    Button logOutButton;
     static final String TAG = "MainActivity";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 200;
     public String photoFileName = "photo.jpg";
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         photoButton = findViewById(R.id.photoButton);
         image = findViewById(R.id.postImage);
         submitButton = findViewById(R.id.submitButton);
+        logOutButton = findViewById(R.id.logOut);
 
 //        queryPost();
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 launchCamera();
+            }
+        });
+
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
