@@ -7,49 +7,7 @@
     android:layout_margin="8dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/postText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:ems="10"
-        android:hint="Post description"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="23dp" />
 
-    <Button
-        android:id="@+id/photoButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/postText"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Take Photo" />
-
-    <ImageView
-        android:id="@+id/postImage"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_below="@+id/photoButton"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/postImage"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Submit" />
 
     <Button
         android:id="@+id/logOut"
@@ -62,4 +20,10 @@
         android:layout_marginBottom="8dp"
         android:text="LOG OUT" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_bottom_navigation" />
 </RelativeLayout>
