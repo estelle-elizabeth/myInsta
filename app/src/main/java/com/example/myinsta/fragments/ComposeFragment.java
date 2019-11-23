@@ -24,15 +24,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myinsta.Post;
 import com.example.myinsta.R;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
 
 public class ComposeFragment extends Fragment {
     EditText postText;
@@ -160,20 +157,5 @@ public class ComposeFragment extends Fragment {
         });
     }
 
-    private void queryPost() {
-        // Specify which class to query
-        ParseQuery<Post> query = new ParseQuery<Post>(Post.class);
-        query.include(Post.KEY_USER);
 
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null){
-                    Log.e(TAG, "Issue with post query");
-                    e.printStackTrace();
-                    return;
-                }
-            }
-        });
-    }
 }

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.myinsta.HomeAdapter;
 import com.example.myinsta.Post;
@@ -24,8 +25,9 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private RecyclerView rvHome;
-    private HomeAdapter adapter;
-    private List<Post> userPosts;
+    protected HomeAdapter adapter;
+    protected List<Post> userPosts;
+    private SwipeRefreshLayout swipeContainer;
     private final static String TAG = "HomeFragment";
 
     @Nullable
@@ -39,17 +41,33 @@ public class HomeFragment extends Fragment {
         userPosts = new ArrayList<Post>();
         rvHome = view.findViewById(R.id.rvHome);
         adapter = new HomeAdapter(getContext(), userPosts);
+        swipeContainer = view.findViewById(R.id.swipeContainer);
         rvHome.setAdapter(adapter);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.clear();
+                queryPost();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
-    private void queryPost() {
+    protected void queryPost() {
         // Specify which class to query
 
         ParseQuery<Post> query = new ParseQuery<Post>(Post.class);
         query.include(Post.KEY_USER);
-
+        query.setLimit(20);
+        query.addDescendingOrder(Post.KEY_CREATE_AT);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {

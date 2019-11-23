@@ -42,6 +42,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         return posts.size();
     }
 
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+//    public void addAll(List<Post> list) {
+//        posts.addAll(list);
+//        notifyDataSetChanged();
+//    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView userName;
         ImageView ivImage;
