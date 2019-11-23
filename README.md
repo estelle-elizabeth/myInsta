@@ -24,6 +24,16 @@ The following **optional** features are implemented:
 - [ ] User can like a post and see number of likes for each post in the post details screen.
 - [ ] Run your app on your phone and use a custom camera view
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<a href="https://drive.google.com/file/d/1YC426oofSi_aDsrvzEAUbjvS8mwg_CqA/view?usp=sharing">Video Walkthrough</a>
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+## Part 1
 Time spent: 8 hours spent in total
 
 ## User Stories
