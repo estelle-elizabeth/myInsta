@@ -1,7 +1,10 @@
 package com.example.myinsta;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,10 +15,11 @@ import com.example.myinsta.fragments.ComposeFragment;
 import com.example.myinsta.fragments.HomeFragment;
 import com.example.myinsta.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    Button logOutButton;
     static final String TAG = "MainActivity";
     BottomNavigationView bottomNavigationView;
 
@@ -26,7 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
+        logOutButton = findViewById(R.id.logOut);
 
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+                startActivity(intent);
+//                finish();
+            }
+        });
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);

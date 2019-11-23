@@ -22,17 +22,7 @@ public class ProfileFragment extends HomeFragment {
 //    @Override
 //    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 //        super.onViewCreated(view, savedInstanceState);
-//        logOutButton = view.findViewById(R.id.logOut);
 //
-//        logOutButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ParseUser.logOut();
-//                Intent intent = new Intent(getActivity(), LogInActivity.class);
-//                startActivity(intent);
-////                finish();
-//            }
-//        });
 //    }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.myinsta;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.List;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     private Context context;
     private List<Post> posts;
+    private final static String TAG = "HomeAdapter";
 
     public HomeAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -47,10 +49,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         notifyDataSetChanged();
     }
 
-//    public void addAll(List<Post> list) {
-//        posts.addAll(list);
-//        notifyDataSetChanged();
-//    }
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView userName;
@@ -70,6 +68,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             ParseFile image = post.getImage();
 
             if (image != null){
+                Log.i(TAG, "image is not null");
                 Glide.with(context)
                         .load(image.getUrl())
                         .into(ivImage);
