@@ -26,7 +26,7 @@ public class Post extends ParseObject {
         return getString(KEY_DESCRIPTION);
     }
 
-    
+
 
     // Use put to modify field values
     public void setDescription(String value) {
