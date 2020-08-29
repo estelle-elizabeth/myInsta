@@ -1,7 +1,6 @@
-# Project 3 - myInsta
+# myInsta
 myInsta is a photo sharing app similar to Instagram but using Parse as its backend.
 
-## Part 2
 ## User Stories
 
 The following are the functionalities of the app:
